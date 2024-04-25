@@ -1,5 +1,6 @@
 #include "Window.h"
 #include "Logger.h"
+#include <vector>
 
 bool Window::init(unsigned int width, unsigned int height, std::string title) {
 	if (!glfwInit()) {
@@ -34,6 +35,56 @@ bool Window::init(unsigned int width, unsigned int height, std::string title) {
 }
 
 bool Window::initVulkan() {
+	VkResult result = VK_ERROR_UNKNOWN;
+	VkApplicationInfo mAppInfo{};
+	mAppInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+	mAppInfo.pNext = nullptr;
+	mAppInfo.apiVersion = VK_MAKE_API_VERSION(0, 1, 1, 0);
+
+	uint32_t extensionCount = 0;
+	const char** extensions = glfwGetRequiredInstanceExtensions(&extensionCount);
+	if (extensionCount == 0) {
+		Logger::log(1, "%s error: no Vulkan extensions found, need at least 'VK_KHR_SURFACE'\n", __FUNCTION__);
+		return false;
+	}
+
+	Logger::log(1, "%s: Found %u Vulkan extensions\n", __FUNCTION__, extensionCount);
+	for (int i = 0; i < extensionCount; ++i) {
+		Logger::log(1, "%s: %s\n", __FUNCTION__, std::string(extensions[i]).c_str());
+	}
+
+	VkInstanceCreateInfo mCreateInfo{};
+	mCreateInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+	mCreateInfo.pNext = nullptr;
+	mCreateInfo.pApplicationInfo = &mAppInfo;
+	mCreateInfo.enabledExtensionCount = extensionCount;
+	mCreateInfo.ppEnabledExtensionNames = extensions;
+	mCreateInfo.enabledLayerCount = 0;
+	result = vkCreateInstance(&mCreateInfo, nullptr, &mInstance);
+	if (result != VK_SUCCESS) {
+		Logger::log(1, "%s: Could not create Vulkan instance (%i)\n", __FUNCTION__, result);
+		return false;
+	}
+	
+	// count physical device
+	uint32_t physicalDeviceCount = 0;
+	vkEnumeratePhysicalDevices(mInstance, &physicalDeviceCount, nullptr);
+	if (physicalDeviceCount == 0) {
+		Logger::log(1, "%s: No Vulkan capable GPU found\n", __FUNCTION__);
+		return false;
+	}
+
+	// fill with data about GPU
+	std::vector<VkPhysicalDevice> devices;
+	vkEnumeratePhysicalDevices(mInstance, &physicalDeviceCount, devices.data());
+
+	// create surface
+	result = glfwCreateWindowSurface(mInstance, mWindow, nullptr, &mSurface);
+	if (result != VK_SUCCESS) {
+		Logger::log(1, "%s: Could not create Vulkan surface %i\n", __FUNCTION__, result);
+		return false;
+	}
+
 	return true;
 }
 
@@ -51,6 +102,8 @@ void Window::mainLoop() {
 
 void Window::cleanup() {
 	Logger::log(1, "%s: Terminating Window\n", __FUNCTION__);
+	vkDestroySurfaceKHR(mInstance, mSurface, nullptr);
+	vkDestroyInstance(mInstance, nullptr);
 	glfwDestroyWindow(mWindow);
 	glfwTerminate();
 }
