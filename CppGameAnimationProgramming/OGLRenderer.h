@@ -19,7 +19,7 @@ public:
 	void uploadData(OGLMesh vertexData);
 	void draw();
 private:
-	Shader mBasicShader{};
+	Shader mShader{};
 	Framebuffer mFrameBuffer{};
 	VertexBuffer mVertexBuffer{};
 	Texture mTex{};
