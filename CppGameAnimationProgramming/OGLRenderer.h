@@ -20,7 +20,7 @@ public:
 	void draw();
 private:
 	Shader mShader{};
-	Framebuffer mFrameBuffer{};
+	Framebuffer mFramebuffer{};
 	VertexBuffer mVertexBuffer{};
 	Texture mTex{};
 	int mTriangleCount = 0;

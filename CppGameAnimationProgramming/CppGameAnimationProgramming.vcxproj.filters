@@ -16,38 +16,62 @@
     <Filter Include="Source Files\opengl">
       <UniqueIdentifier>{849d422c-d32d-40c2-8564-6281959a2b84}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\window">
-      <UniqueIdentifier>{ba72e26d-8b8d-405b-8869-574cf4b986c1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\tools">
       <UniqueIdentifier>{4c6bb67f-e322-435b-afa8-1c02f2945989}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\window">
+      <UniqueIdentifier>{83972535-cdcd-4278-91ca-50be1acb9ff7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window.h">
-      <Filter>Source Files\window</Filter>
-    </ClInclude>
     <ClInclude Include="Logger.h">
       <Filter>Source Files\tools</Filter>
     </ClInclude>
     <ClInclude Include="OGLRenderer.h">
       <Filter>Source Files\opengl</Filter>
     </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Source Files\window</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBuffer.h">
+      <Filter>Source Files\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="Framebuffer.h">
+      <Filter>Source Files\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Source Files\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Source Files\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="OGLRenderData.h">
+      <Filter>Source Files\opengl</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="glad.c">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files\window</Filter>
     </ClCompile>
     <ClCompile Include="Logger.cpp">
       <Filter>Source Files\tools</Filter>
     </ClCompile>
     <ClCompile Include="OGLRenderer.cpp">
+      <Filter>Source Files\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\window</Filter>
+    </ClCompile>
+    <ClCompile Include="Framebuffer.cpp">
+      <Filter>Source Files\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBuffer.cpp">
       <Filter>Source Files\opengl</Filter>
     </ClCompile>
   </ItemGroup>
