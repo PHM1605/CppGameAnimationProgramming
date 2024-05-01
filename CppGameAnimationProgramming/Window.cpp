@@ -10,23 +10,27 @@ bool Window::init(unsigned int width, unsigned int height, std::string title) {
 		Logger::log(1, "%s: glfwInit() error\n", __FUNCTION__);
 		return false;
 	}
-
+	/*
 	if (!glfwVulkanSupported()) {
 		glfwTerminate();
 		Logger::log(1, "%s: Vulkan is not supported\n", __FUNCTION__);
 		return false;
 	}
+	*/
 
-	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-	mApplicationName = title;
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	//glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+	//glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+	//mApplicationName = title;
 	mWindow = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 	if (!mWindow) {
 		Logger::log(1, "%s: Could not create window\n", __FUNCTION__);
 		glfwTerminate();
 		return false;
 	}
-
+	/*
 	// Save user pointer
 	glfwSetWindowUserPointer(mWindow, this);
 
@@ -45,14 +49,29 @@ bool Window::init(unsigned int width, unsigned int height, std::string title) {
 		auto thisWindow = static_cast<Window*>(glfwGetWindowUserPointer(win));
 		thisWindow->handleMouseButtonEvents(button, action, mods);
 		});
-	
-	// glfwMakeContextCurrent(mWindow); // Use OpenGL
+	*/
+	glfwMakeContextCurrent(mWindow); // Use OpenGL
+	mRenderer = std::make_unique<OGLRenderer>();
+	if (!mRenderer->init(width, height)) {
+		glfwTerminate();
+		Logger::log(1, "%s error: Could not init OpenGL\n", __FUNCTION__);
+		return false;
+	}
+	/*
 	if (!initVulkan()) {
 		Logger::log(1, "%s: Could not init Vulkan\n", __FUNCTION__);
 		glfwTerminate();
 		return false;
-	}
-	Logger::log(1, "%s: Window successfully initialized\n", __FUNCTION__);
+	}*/
+	glfwSetWindowUserPointer(mWindow, mRenderer.get());
+	glfwSetWindowSizeCallback(mWindow, [](GLFWwindow* win, int width, int height) {
+		auto renderer = static_cast<OGLRenderer*>(glfwGetWindowUserPointer(win));
+		renderer->setSize(width, height);
+		});
+	mModel = std::make_unique<Model>();
+	mModel->init();
+	Logger::log(1, "%s: mockup model data loaded\n", __FUNCTION__);
+	Logger::log(1, "%s: Window with OpenGL 4.6 successfully initialized\n", __FUNCTION__);
 	return true;
 }
 
@@ -172,11 +191,9 @@ void Window::handleMouseButtonEvents(int button, int action, int mods) {
 
 void Window::mainLoop() {
 	glfwSwapInterval(1);
-	float color = 0.0f;
+	mRenderer->uploadData(mModel->getVertexData());
 	while (!glfwWindowShouldClose(mWindow)) {
-		color >= 1.0f ? color = 0.0f : color += 0.01f;
-		glClearColor(color, color, color, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		mRenderer->draw();
 		glfwSwapBuffers(mWindow);
 		glfwPollEvents();
 	}

@@ -13,6 +13,25 @@ void VertexBuffer::init() {
 	glBindVertexArray(0);
 }
 
+void VertexBuffer::uploadData(OGLMesh vertexData) {
+	glBindVertexArray(mVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, mVertexVBO);
+	glBufferData(GL_ARRAY_BUFFER, vertexData.vertices.size() * sizeof(OGLVertex), &vertexData.vertices.at(0), GL_DYNAMIC_DRAW);
+	glBindVertexArray(0);
+}
+
+void VertexBuffer::bind() {
+	glBindVertexArray(mVAO);
+}
+
+void VertexBuffer::unbind() {
+	glBindVertexArray(0);
+}
+
+void VertexBuffer::draw(GLuint mode, unsigned int start, unsigned int num) {
+	glDrawArrays(mode, start, num);
+}
+
 void VertexBuffer::cleanup() {
 	glDeleteBuffers(1, &mVertexVBO);
 	glDeleteVertexArrays(1, &mVAO);

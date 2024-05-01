@@ -2,20 +2,23 @@
 
 bool OGLRenderer::init(unsigned int width, unsigned int height) {
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+		Logger::log(1, "%s error: failed to initialize GLAD\n", __FUNCTION__);
 		return false;
 	}
 	if (!GLAD_GL_VERSION_4_6) {
+		Logger::log(1, "%s error: failed to get at least OpenGL 4.6\n", __FUNCTION__);
 		return false;
 	}
 
-	if (!mFrameBuffer.init(width, height)) {
+	if (!mFramebuffer.init(width, height)) {
 		return false;
 	}
-	if (!mTex.loadTexture("textures/crate.png")) {
+	if (!mTex.loadTexture("crate.png")) {
+		Logger::log(1, "%s: texture loading failed\n", __FUNCTION__);
 		return false;
 	}
 	mVertexBuffer.init();
-	if (!mShader.loadShaders("shader/basic.vert", "shader/basic.frag")) {
+	if (!mShader.loadShaders("basic.vert", "basic.frag")) {
 		return false;
 	}
 
@@ -28,7 +31,7 @@ void OGLRenderer::setSize(unsigned int width, unsigned int height) {
 }
 
 void OGLRenderer::uploadData(OGLMesh vertexData) {
-	mTriangleCount = vextexData.vertices.size();
+	mTriangleCount = vertexData.vertices.size();
 	mVertexBuffer.uploadData(vertexData);
 }
 

@@ -22,6 +22,12 @@
     <Filter Include="Source Files\window">
       <UniqueIdentifier>{83972535-cdcd-4278-91ca-50be1acb9ff7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\shaders">
+      <UniqueIdentifier>{8b4ec8d3-f198-446b-8977-c27e5bc083eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\model">
+      <UniqueIdentifier>{0898157a-7b14-4a51-ae81-52ca41063f29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Logger.h">
@@ -47,6 +53,9 @@
     </ClInclude>
     <ClInclude Include="OGLRenderData.h">
       <Filter>Source Files\opengl</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Source Files\model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -74,10 +83,24 @@
     <ClCompile Include="VertexBuffer.cpp">
       <Filter>Source Files\opengl</Filter>
     </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\opengl</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="textures\crate.png">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="basic.vert">
+      <Filter>Source Files\shaders</Filter>
+    </None>
+    <None Include="basic.frag">
+      <Filter>Source Files\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

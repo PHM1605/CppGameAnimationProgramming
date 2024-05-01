@@ -9,6 +9,7 @@
 #include "VertexBuffer.h"
 #include "Texture.h"
 #include "Shader.h"
+#include "Logger.h"
 #include "OGLRenderData.h"
 
 class OGLRenderer {

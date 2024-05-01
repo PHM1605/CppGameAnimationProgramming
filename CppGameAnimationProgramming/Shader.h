@@ -10,5 +10,9 @@ public:
 	void cleanup();
 private:
 	GLuint mShaderProgram = 0;
-	GLuint readShader(std::string shaderFileName, GLuint shaderType);
+	bool createShaderProgram(std::string vertexShaderFileName, std::string fragmentShaderFileName);
+	GLuint loadShader(std::string shaderFileName, GLuint shaderType);
+	std::string loadFileToString(std::string filename);
+	bool checkCompileStats(std::string shaderFileName, GLuint shader);
+	bool checkLinkStats(std::string vertexShaderFileName, std::string fragmentShaderFileName, GLuint shaderProgram);
 };
