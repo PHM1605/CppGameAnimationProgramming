@@ -5,31 +5,28 @@
 #include <iostream>
 
 bool Window::init(unsigned int width, unsigned int height, std::string title) {
-	
 	if (!glfwInit()) {
 		Logger::log(1, "%s: glfwInit() error\n", __FUNCTION__);
 		return false;
-	}
-	/*
+	}	
 	if (!glfwVulkanSupported()) {
 		glfwTerminate();
 		Logger::log(1, "%s: Vulkan is not supported\n", __FUNCTION__);
 		return false;
 	}
-	*/
-
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	//glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+	//glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	//glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+	//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 	//glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 	//mApplicationName = title;
 	mWindow = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 	if (!mWindow) {
-		Logger::log(1, "%s: Could not create window\n", __FUNCTION__);
 		glfwTerminate();
+		Logger::log(1, "%s: Could not create window\n", __FUNCTION__);
 		return false;
 	}
+	mRenderer = std::make_unique<VkRenderer>(mWindow);
 	/*
 	// Save user pointer
 	glfwSetWindowUserPointer(mWindow, this);
@@ -50,8 +47,8 @@ bool Window::init(unsigned int width, unsigned int height, std::string title) {
 		thisWindow->handleMouseButtonEvents(button, action, mods);
 		});
 	*/
-	glfwMakeContextCurrent(mWindow); // Use OpenGL
-	mRenderer = std::make_unique<OGLRenderer>();
+	//glfwMakeContextCurrent(mWindow); // Use OpenGL
+	//mRenderer = std::make_unique<OGLRenderer>();
 	if (!mRenderer->init(width, height)) {
 		glfwTerminate();
 		Logger::log(1, "%s error: Could not init OpenGL\n", __FUNCTION__);
@@ -65,7 +62,8 @@ bool Window::init(unsigned int width, unsigned int height, std::string title) {
 	}*/
 	glfwSetWindowUserPointer(mWindow, mRenderer.get());
 	glfwSetWindowSizeCallback(mWindow, [](GLFWwindow* win, int width, int height) {
-		auto renderer = static_cast<OGLRenderer*>(glfwGetWindowUserPointer(win));
+		//auto renderer = static_cast<OGLRenderer*>(glfwGetWindowUserPointer(win));
+		auto renderer = static_cast<VkRenderer*>(glfwGetWindowUserPointer(win));
 		renderer->setSize(width, height);
 		});
 	mModel = std::make_unique<Model>();
@@ -75,6 +73,7 @@ bool Window::init(unsigned int width, unsigned int height, std::string title) {
 	return true;
 }
 
+/*
 bool Window::initVulkan() {
 	VkResult result = VK_ERROR_UNKNOWN;
 	
@@ -188,22 +187,30 @@ void Window::handleMouseButtonEvents(int button, int action, int mods) {
 	}
 	Logger::log(1, "%s: %s mouse button (%i) %s\n", __FUNCTION__, mouseButtonName.c_str(), button, actionName.c_str());
 }
+*/
 
 void Window::mainLoop() {
-	glfwSwapInterval(1);
+	//glfwSwapInterval(1);
 	mRenderer->uploadData(mModel->getVertexData());
 	while (!glfwWindowShouldClose(mWindow)) {
+		/*
 		mRenderer->draw();
 		glfwSwapBuffers(mWindow);
+		glfwPollEvents();
+		*/
+		if (!mRenderer->draw()) {
+			break;
+		}
 		glfwPollEvents();
 	}
 }
 
 void Window::cleanup() {
-	Logger::log(1, "%s: Terminating Window\n", __FUNCTION__);
-	vkDestroySurfaceKHR(mInstance, mSurface, nullptr);
-	vkDestroyInstance(mInstance, nullptr);
+	mRenderer->cleanup();
+	//vkDestroySurfaceKHR(mInstance, mSurface, nullptr);
+	//vkDestroyInstance(mInstance, nullptr);
 	glfwDestroyWindow(mWindow);
 	glfwTerminate();
+	Logger::log(1, "%s: Terminating Window\n", __FUNCTION__);
 }
 

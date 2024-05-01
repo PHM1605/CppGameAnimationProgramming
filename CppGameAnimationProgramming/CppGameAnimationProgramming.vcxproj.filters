@@ -28,6 +28,9 @@
     <Filter Include="Source Files\model">
       <UniqueIdentifier>{0898157a-7b14-4a51-ae81-52ca41063f29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\vulkan">
+      <UniqueIdentifier>{67c81581-bb87-4d24-8d57-ef749fce2a2d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Logger.h">
@@ -56,6 +59,18 @@
     </ClInclude>
     <ClInclude Include="Model.h">
       <Filter>Source Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="VkRenderData.h">
+      <Filter>Source Files\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="VkRenderer.h">
+      <Filter>Source Files\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="Pipeline.h">
+      <Filter>Source Files\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandPool.h">
+      <Filter>Source Files\vulkan</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +103,12 @@
     </ClCompile>
     <ClCompile Include="Model.cpp">
       <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="Pipeline.cpp">
+      <Filter>Source Files\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="VkRenderer.cpp">
+      <Filter>Source Files\vulkan</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
