@@ -13,130 +13,44 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\opengl">
-      <UniqueIdentifier>{849d422c-d32d-40c2-8564-6281959a2b84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\tools">
-      <UniqueIdentifier>{4c6bb67f-e322-435b-afa8-1c02f2945989}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\window">
-      <UniqueIdentifier>{83972535-cdcd-4278-91ca-50be1acb9ff7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\shaders">
-      <UniqueIdentifier>{8b4ec8d3-f198-446b-8977-c27e5bc083eb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\model">
-      <UniqueIdentifier>{0898157a-7b14-4a51-ae81-52ca41063f29}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\vulkan">
-      <UniqueIdentifier>{67c81581-bb87-4d24-8d57-ef749fce2a2d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\vkb">
-      <UniqueIdentifier>{718b6a1b-73ec-4498-8d9f-f8a1bc52d51c}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Logger.h">
-      <Filter>Source Files\tools</Filter>
-    </ClInclude>
-    <ClInclude Include="OGLRenderer.h">
-      <Filter>Source Files\opengl</Filter>
-    </ClInclude>
-    <ClInclude Include="Window.h">
-      <Filter>Source Files\window</Filter>
-    </ClInclude>
-    <ClInclude Include="VertexBuffer.h">
-      <Filter>Source Files\opengl</Filter>
-    </ClInclude>
-    <ClInclude Include="Framebuffer.h">
-      <Filter>Source Files\opengl</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Source Files\opengl</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Source Files\opengl</Filter>
-    </ClInclude>
-    <ClInclude Include="OGLRenderData.h">
-      <Filter>Source Files\opengl</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Source Files\model</Filter>
-    </ClInclude>
-    <ClInclude Include="VkRenderData.h">
-      <Filter>Source Files\vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="VkRenderer.h">
-      <Filter>Source Files\vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="Pipeline.h">
-      <Filter>Source Files\vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="CommandPool.h">
-      <Filter>Source Files\vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderpass.h">
-      <Filter>Source Files\vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="CommandBuffer.h">
-      <Filter>Source Files\vulkan</Filter>
-    </ClInclude>
-    <ClInclude Include="SyncObjects.h">
-      <Filter>Source Files\vulkan</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Logger.cpp">
-      <Filter>Source Files\tools</Filter>
-    </ClCompile>
-    <ClCompile Include="OGLRenderer.cpp">
-      <Filter>Source Files\opengl</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files\window</Filter>
+    <ClCompile Include="window\Window.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Framebuffer.cpp">
-      <Filter>Source Files\opengl</Filter>
+    <ClCompile Include="tools\Logger.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Source Files\opengl</Filter>
+    <ClCompile Include="vulkan\VkRenderer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VertexBuffer.cpp">
-      <Filter>Source Files\opengl</Filter>
+    <ClCompile Include="vkb\VkBootstrap.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files\opengl</Filter>
+    <ClCompile Include="model\Model.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source Files\model</Filter>
-    </ClCompile>
-    <ClCompile Include="Pipeline.cpp">
-      <Filter>Source Files\vulkan</Filter>
-    </ClCompile>
-    <ClCompile Include="VkRenderer.cpp">
-      <Filter>Source Files\vulkan</Filter>
-    </ClCompile>
-    <ClCompile Include="VkBootstrap.cpp">
-      <Filter>Source Files\vkb</Filter>
+    <ClCompile Include="vulkan\Framebuffer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="textures\crate.png">
+    <ClInclude Include="vulkan\VkRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vulkan\Framebuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shader\basic.frag">
       <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="basic.vert">
-      <Filter>Source Files\shaders</Filter>
     </None>
-    <None Include="basic.frag">
-      <Filter>Source Files\shaders</Filter>
+    <None Include="shader\basic.vert">
+      <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
 </Project>
