@@ -161,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vulkan\Framebuffer.h" />
+    <ClInclude Include="vulkan\VkRenderData.h" />
     <ClInclude Include="vulkan\VkRenderer.h" />
   </ItemGroup>
   <ItemGroup>
