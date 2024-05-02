@@ -49,11 +49,15 @@ bool Window::init(unsigned int width, unsigned int height, std::string title) {
 	*/
 	//glfwMakeContextCurrent(mWindow); // Use OpenGL
 	//mRenderer = std::make_unique<OGLRenderer>();
+
+	
 	if (!mRenderer->init(width, height)) {
 		glfwTerminate();
 		Logger::log(1, "%s error: Could not init OpenGL\n", __FUNCTION__);
 		return false;
 	}
+
+
 	/*
 	if (!initVulkan()) {
 		Logger::log(1, "%s: Could not init Vulkan\n", __FUNCTION__);

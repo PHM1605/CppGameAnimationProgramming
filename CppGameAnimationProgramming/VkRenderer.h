@@ -8,13 +8,14 @@
 #include <vma/vk_mem_alloc.h>
 
 #include "VkRenderData.h"
+
 #include "Renderpass.h"
-#include "Pipeline.h"
-#include "Frambuffer.h"
-#include "CommandPool.h"
-#include "CommandBuffer.h"
-#include "SyncObjects.h"
-#include "Texture.h"
+//#include "Pipeline.h"
+//#include "Framebuffer.h"
+//#include "CommandPool.h"
+//#include "CommandBuffer.h"
+//#include "SyncObjects.h"
+//#include "Texture.h"
 
 class VkRenderer {
 public:
@@ -32,7 +33,7 @@ private:
 	vkb::PhysicalDevice mPhysDevice;
 	VkBuffer mVertexBuffer;
 	VmaAllocation mVertexBufferAlloc;
-
+	
 	bool deviceInit();
 	bool getQueue();
 	bool createDepthBuffer();

@@ -3,7 +3,7 @@
 #include "Shader.h"
 #include "Logger.h"
 #define _CRT_SECURE_NO_WARNINGS
-
+/*
 bool Shader::loadShaders(std::string vertexShaderFileName, std::string fragmentShaderFileName) {
 	Logger::log(1, "%s: loading vertex shader '%s' and fragment shader '%s'\n", __FUNCTION__, vertexShaderFileName.c_str(), fragmentShaderFileName.c_str());
 	if (!createShaderProgram(vertexShaderFileName, fragmentShaderFileName)) {
@@ -95,6 +95,21 @@ bool Shader::checkLinkStats(std::string vertexShaderFileName, std::string fragme
 		return false;
 	}
 	return true;
+}
+*/
+
+VkShaderModule Shader::loadShader(VkDevice device, std::string shaderFileName) {
+	std::string shaderAsText = loadFileToString(shaderFileName);
+	VkShaderModuleCreateInfo shaderCreateInfo{};
+	shaderCreateInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	shaderCreateInfo.codeSize = shaderAsText.size();
+	shaderCreateInfo.pCode = reinterpret_cast<const uint32_t*>(shaderAsText.c_str());
+	VkShaderModule shaderModule;
+	if (vkCreateShaderModule(device, &shaderCreateInfo, nullptr, &shaderModule) != VK_SUCCESS) {
+		Logger::log(1, "%s: could not load shader'%s'\n", __FUNCTION__, shaderFileName.c_str());
+		return VK_NULL_HANDLE;
+	}
+	return shaderModule;
 }
 
 std::string Shader::loadFileToString(std::string fileName) {

@@ -1,12 +1,15 @@
 #pragma once
 #include <vector>
 #include <glm/glm.hpp>
-#include "OGLRenderData.h"
+//#include "OGLRenderData.h"
+#include "VkRenderData.h"
 
 class Model {
 public:
 	void init();
-	OGLMesh getVertexData();
+	//OGLMesh getVertexData();
+	VkMesh getVertexData();
 private:
-	OGLMesh mVertexData;
+	//OGLMesh mVertexData;
+	VkMesh mVertexData;
 };

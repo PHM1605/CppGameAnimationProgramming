@@ -1,4 +1,5 @@
 #include "Model.h"
+#include "Logger.h"
 
 void Model::init() {
 	mVertexData.vertices.resize(6);
@@ -14,8 +15,13 @@ void Model::init() {
 	mVertexData.vertices[3].uv = glm::vec2(0.0f, 0.0f);
 	mVertexData.vertices[4].uv = glm::vec2(1.0f, 0.0f);
 	mVertexData.vertices[5].uv = glm::vec2(1.0f, 1.0f);
+	Logger::log(1, "%s: loaded %d vertices\n", __FUNCTION__, mVertexData.vertices.size());
 }
 
+/*
 OGLMesh Model::getVertexData() {
+	return mVertexData;
+}*/
+VkMesh Model::getVertexData() {
 	return mVertexData;
 }

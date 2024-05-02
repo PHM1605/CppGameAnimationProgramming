@@ -31,6 +31,9 @@
     <Filter Include="Source Files\vulkan">
       <UniqueIdentifier>{67c81581-bb87-4d24-8d57-ef749fce2a2d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\vkb">
+      <UniqueIdentifier>{718b6a1b-73ec-4498-8d9f-f8a1bc52d51c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Logger.h">
@@ -72,6 +75,15 @@
     <ClInclude Include="CommandPool.h">
       <Filter>Source Files\vulkan</Filter>
     </ClInclude>
+    <ClInclude Include="Renderpass.h">
+      <Filter>Source Files\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandBuffer.h">
+      <Filter>Source Files\vulkan</Filter>
+    </ClInclude>
+    <ClInclude Include="SyncObjects.h">
+      <Filter>Source Files\vulkan</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -109,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="VkRenderer.cpp">
       <Filter>Source Files\vulkan</Filter>
+    </ClCompile>
+    <ClCompile Include="VkBootstrap.cpp">
+      <Filter>Source Files\vkb</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
