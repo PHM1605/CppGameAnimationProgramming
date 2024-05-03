@@ -47,7 +47,7 @@ struct VkRenderData {
 	VkImage rdTextureImage = VK_NULL_HANDLE;
 	VkImageView rdTextureImageView = VK_NULL_HANDLE;
 	VkSampler rdTextureSampler = VK_NULL_HANDLE;
-	VmaAllocation rdTextureImageAllow = VK_NULL_HANDLE;
+	VmaAllocation rdTextureImageAlloc = VK_NULL_HANDLE;
 	// Descriptor
 	VkDescriptorPool rdDescriptorPool = VK_NULL_HANDLE;
 	VkDescriptorSetLayout rdTextureLayout = VK_NULL_HANDLE;

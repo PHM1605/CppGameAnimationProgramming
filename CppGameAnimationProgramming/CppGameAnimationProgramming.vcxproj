@@ -71,12 +71,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir);$(ProjectDir)include;$(ProjectDir)tools;$(ProjectDir)vulkan;$(ProjectDir)model;$(ProjectDir)window;C:\Program Files %28x86%29\glfw\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)lib;C:\Program Files %28x86%29\glfw\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)include;$(ProjectDir)vkb;$(ProjectDir)vma;$(ProjectDir)vulkan;$(ProjectDir)model;$(ProjectDir)tools;$(ProjectDir)window;C:\Program Files %28x86%29\glfw\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir);$(ProjectDir)include;$(ProjectDir)tools;$(ProjectDir)vulkan;$(ProjectDir)model;$(ProjectDir)window;C:\Program Files %28x86%29\glfw\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)lib;C:\Program Files %28x86%29\glfw\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)include;$(ProjectDir)vkb;$(ProjectDir)vma;$(ProjectDir)vulkan;$(ProjectDir)model;$(ProjectDir)tools;$(ProjectDir)window;C:\Program Files %28x86%29\glfw\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(ProjectDir);$(ProjectDir)include;$(ProjectDir)tools;$(ProjectDir)vulkan;$(ProjectDir)model;$(ProjectDir)window;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
@@ -155,18 +155,28 @@
     <ClCompile Include="model\Model.cpp" />
     <ClCompile Include="tools\Logger.cpp" />
     <ClCompile Include="vkb\VkBootstrap.cpp" />
+    <ClCompile Include="vulkan\CommandBuffer.cpp" />
+    <ClCompile Include="vulkan\CommandPool.cpp" />
     <ClCompile Include="vulkan\Framebuffer.cpp" />
+    <ClCompile Include="vulkan\Pipeline.cpp" />
+    <ClCompile Include="vulkan\Shader.cpp" />
+    <ClCompile Include="vulkan\Texture.cpp" />
     <ClCompile Include="vulkan\VkRenderer.cpp" />
     <ClCompile Include="window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="vulkan\CommandBuffer.h" />
+    <ClInclude Include="vulkan\CommandPool.h" />
     <ClInclude Include="vulkan\Framebuffer.h" />
+    <ClInclude Include="vulkan\Pipeline.h" />
+    <ClInclude Include="vulkan\Shader.h" />
+    <ClInclude Include="vulkan\Texture.h" />
     <ClInclude Include="vulkan\VkRenderData.h" />
     <ClInclude Include="vulkan\VkRenderer.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader\basic.frag" />
-    <None Include="shader\basic.vert" />
+    <None Include="shader\basic.frag.spv" />
+    <None Include="shader\basic.vert.spv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

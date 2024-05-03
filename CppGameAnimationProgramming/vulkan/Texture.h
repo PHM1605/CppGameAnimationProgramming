@@ -1,14 +1,10 @@
-#pragma once
+#pragma once 
 #include <string>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include <vulkan/vulkan.h>
+#include "VkRenderData.h"
 
 class Texture {
 public:
-	bool loadTexture(std::string textureFilename);
-	void bind();
-	void unbind();
-	void cleanup();
-private:
-	GLuint mTexture = 0;
+	static bool loadTexture(VkRenderData& renderData, std::string textureFilename);
+	static void cleanup(VkRenderData& renderData);
 };

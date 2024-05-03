@@ -179,6 +179,12 @@ bool VkRenderer::createRenderPass() {
 }
 
 bool VkRenderer::createPipeline() {
+	std::string vertexShaderFile = "shader/basic.vert.spv";
+	std::string fragmentShaderFile = "shader/basic.frag.spv";
+	if (!Pipeline::init(mRenderData, vertexShaderFile, fragmentShaderFile)) {
+		Logger::log(1, "%s error: could not init pipeline\n", __FUNCTION__);
+		return false;
+	}
 	return true;
 }
 
@@ -187,10 +193,18 @@ bool VkRenderer::createFramebuffer() {
 }
 
 bool VkRenderer::createCommandPool() {
+	if (!CommandPool::init(mRenderData)) {
+		Logger::log(1, "%s error: could not craete command pool\n", __FUNCTION__);
+		return false;
+	}
 	return true;
 }
 
 bool VkRenderer::createCommandBuffer() {
+	if (!CommandBuffer::init(mRenderData, mRenderData.rdCommandBuffer)) {
+		Logger::log(1, "% s error : could not create command buffer\n", __FUNCTION__);
+		return false;
+	}
 	return true;
 }
 
@@ -199,6 +213,11 @@ bool VkRenderer::createSyncObjects() {
 }
 
 bool VkRenderer::loadTexture() {
+	std::string textureFileName = "textures/crate.png";
+	if (!Texture::loadTexture(mRenderData, textureFileName)) {
+		Logger::log(1, "% s error : could not load texture\n", __FUNCTION__);
+		return false;
+	}
 	return true;
 }
 

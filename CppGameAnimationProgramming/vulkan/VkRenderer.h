@@ -10,12 +10,12 @@
 #include "VkRenderData.h"
 
 #include "Renderpass.h"
-//#include "Pipeline.h"
+#include "Pipeline.h"
 //#include "Framebuffer.h"
-//#include "CommandPool.h"
-//#include "CommandBuffer.h"
+#include "CommandPool.h"
+#include "CommandBuffer.h"
 //#include "SyncObjects.h"
-//#include "Texture.h"
+#include "Texture.h"
 
 class VkRenderer {
 public:

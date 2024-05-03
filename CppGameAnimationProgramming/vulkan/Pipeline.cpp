@@ -160,7 +160,7 @@ bool Pipeline::init(VkRenderData& renderData, std::string vertexShaderFilename, 
 	pipelineCreateInfo.basePipelineHandle = VK_NULL_HANDLE;
 
 	// Create pipeline
-	if (vkCreateGraphicsPipelines(renderData.rdVkbDevice, VK_NULL_HANDLE, 1, &pipelineCreateInfo, nullptr, &renderData.rdPipeline) != VK_SUCCESS) {
+	if (vkCreateGraphicsPipelines(renderData.rdVkbDevice.device, VK_NULL_HANDLE, 1, &pipelineCreateInfo, nullptr, &renderData.rdPipeline) != VK_SUCCESS) {
 		Logger::log(1, "%s error: could not create rendering pipeline\n", __FUNCTION__);
 		vkDestroyPipelineLayout(renderData.rdVkbDevice.device, renderData.rdPipelineLayout, nullptr);
 		return false;
